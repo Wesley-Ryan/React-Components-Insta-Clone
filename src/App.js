@@ -16,7 +16,12 @@ const App = () => {
   const [search, setSearch] = useState("");
 
   const likePost = (postId) => {
-    /*
+    setPosts(
+      posts.map((post) => {
+        post.id === postId ? (post.likes += 1) : (post.likes += 0);
+        return post;
+      })
+    ); /*
       This function serves the purpose of increasing the number of likes by one, of the post with a given id.
 
       The state of the app lives at the top of the React tree, but it wouldn't be fair for nested components not to be able to change state!
@@ -31,7 +36,8 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* Add SearchBar and Posts here to render them */}
+      <SearchBar />
+      <Posts likePost={likePost} posts={posts} />
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
   );
